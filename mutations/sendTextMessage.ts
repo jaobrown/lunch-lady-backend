@@ -18,7 +18,7 @@ export default async function sendTextMessage(
 ): Promise<MessageCreateInput> {
   // 1. Query current user , check for auth
   const sesh = context.session as Session;
-  if (!sesh.itemId) {
+  if (!sesh?.itemId) {
     throw new Error('You must be logged in to do this!');
   }
 
