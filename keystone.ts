@@ -7,7 +7,11 @@ import {
 } from '@keystone-next/keystone/session';
 import { User } from './schemas/User';
 import { Role } from './schemas/Role';
+import { Account } from './schemas/Account';
+import { Message } from './schemas/Message';
+import { Transaction } from './schemas/Transaction';
 import { permissionsList } from './schemas/fields';
+import { extendGraphqlSchema } from './mutations';
 import { sendPasswordResetEmail } from './lib/mail';
 
 const databaseURL =
@@ -54,7 +58,11 @@ export default withAuth(
       // Schema items go in here
       User,
       Role,
+      Message,
+      Account,
+      Transaction,
     }),
+    extendGraphqlSchema,
     ui: {
       // show ui for pass test
       isAccessAllowed: ({ session }) => !!session?.data,
