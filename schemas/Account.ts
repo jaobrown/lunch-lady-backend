@@ -5,7 +5,7 @@ import { TransactionCreateInput } from '../.keystone/schema-types';
 export const Account = list({
   fields: {
     name: text({ isRequired: true }),
-    phone: text({ isUnique: true }),
+    phone: text(),
     messages: relationship({
       ref: 'Message.account',
       many: true,

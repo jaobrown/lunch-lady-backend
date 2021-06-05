@@ -13,6 +13,7 @@ import { Transaction } from './schemas/Transaction';
 import { permissionsList } from './schemas/fields';
 import { extendGraphqlSchema } from './mutations';
 import { sendPasswordResetEmail } from './lib/mail';
+import { insertSeedData } from './seed-data';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/lunch-lady';
@@ -48,11 +49,11 @@ export default withAuth(
     db: {
       adapter: 'mongoose',
       url: databaseURL,
-      // async onConnect(keystone) {
-      //   if (process.argv.includes('--seed-data')) {
-      //     await insertSeedData(keystone);
-      //   }
-      // },
+      async onConnect(keystone) {
+        if (process.argv.includes('--seed-data')) {
+          await insertSeedData(keystone);
+        }
+      },
     },
     lists: createSchema({
       // Schema items go in here
