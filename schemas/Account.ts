@@ -63,7 +63,7 @@ export const Account = list({
     }),
     timeline: virtual({
       extendGraphQLTypes: [
-        'type TimelineEntry { timestamp: String, id: ID, amount: Int, textMessage: String, typename: String }',
+        'type TimelineEntry { timestamp: String, id: ID, amount: Int, textMessage: String }',
       ],
       graphQLReturnType: '[TimelineEntry]',
       resolver: async (item, _, context) => {
@@ -78,7 +78,7 @@ export const Account = list({
         const timeline = accountMessages
           .concat(accountTransactions)
           .sort((a, b) =>
-            a.timestamp < b.timestamp ? -1 : a.timestamp > b.timestamp ? 1 : 0
+            a.timestamp < b.timestamp ? 1 : a.timestamp > b.timestamp ? -1 : 0
           );
         return timeline;
       },
