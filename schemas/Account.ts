@@ -14,6 +14,10 @@ export const Account = list({
       ref: 'Transaction.account',
       many: true,
     }),
+    notes: relationship({
+      ref: 'Note.account',
+      many: true,
+    }),
     balance: virtual({
       graphQLReturnType: 'Int',
       resolver: async (item, _, context) => {

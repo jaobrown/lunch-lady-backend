@@ -1,9 +1,9 @@
-import { integer, relationship, timestamp } from '@keystone-next/fields';
+import { relationship, text, timestamp } from '@keystone-next/fields';
 import { list } from '@keystone-next/keystone/schema';
 
-export const Transaction = list({
+export const Note = list({
   fields: {
-    amount: integer({ isRequired: true }),
+    content: text({ isRequired: true }),
     timestamp: timestamp({
       isRequired: true,
       defaultValue: async ({ context, originalInput }) => {
@@ -12,7 +12,7 @@ export const Transaction = list({
       },
     }),
     account: relationship({
-      ref: 'Account.transactions',
+      ref: 'Account.notes',
     }),
   },
 });

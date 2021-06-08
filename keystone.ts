@@ -9,6 +9,7 @@ import { User } from './schemas/User';
 import { Role } from './schemas/Role';
 import { Account } from './schemas/Account';
 import { Message } from './schemas/Message';
+import { Note } from './schemas/Note';
 import { Transaction } from './schemas/Transaction';
 import { permissionsList } from './schemas/fields';
 import { extendGraphqlSchema } from './mutations';
@@ -60,6 +61,7 @@ export default withAuth(
       User,
       Role,
       Message,
+      Note,
       Account,
       Transaction,
     }),
