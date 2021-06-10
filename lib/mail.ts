@@ -57,3 +57,19 @@ export async function sendPasswordResetEmail(
     console.log(`💌 Message sent! Preview it at ${getTestMessageUrl(info)}`);
   }
 }
+
+export async function sendWelcomeEmail(
+  to: string,
+  name: string
+): Promise<void> {
+  // emil the user a token
+  const info = (await transport.sendMail({
+    to,
+    from: 'test@example.com',
+    subject: 'Welcome, welcome, welcome!',
+    html: makeANiceEmail(`Welcome ${name}! ❤️ Your email is ${to}`),
+  })) as MailResponse;
+  if (process.env.MAIL_USER.includes('ethereal.email')) {
+    console.log(`💌 Message sent! Preview it at ${getTestMessageUrl(info)}`);
+  }
+}
